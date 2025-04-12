@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    // Public read-only access to dashboard data
+    match /trades/{tradeId} {
+      allow read: if true;
+      allow write: if false;
+    }
+    
+    match /correlatedPairs/{pairId} {
+      allow read: if true;
+      allow write: if false;
+    }
+    
+    match /accountMetrics/{metricId} {
+      allow read: if true;
+      allow write: if false;
+    }
+    
+    match /botEvents/{eventId} {
+      allow read: if true;
+      allow write: if false;
+    }
+    
+    match /orders/{orderId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}
